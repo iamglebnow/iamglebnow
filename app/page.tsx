@@ -63,7 +63,7 @@ const Avatar: FC<{ size: "lg" | "sm" }> = ({ size }) => {
 export default function Home() {
   return (
     <main className="min-h-screen bg-white">
-      <div className="w-8/12 mx-auto">
+      <div className="w-6/12 mx-auto">
         {/* ── Hero ── */}
         <section className="flex flex-col items-center text-center pt-16 pb-12">
           <Avatar size="lg" />
