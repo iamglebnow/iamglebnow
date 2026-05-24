@@ -63,54 +63,56 @@ const Avatar: FC<{ size: "lg" | "sm" }> = ({ size }) => {
 export default function Home() {
   return (
     <main className="min-h-screen bg-white">
-      {/* ── Hero ── */}
-      <section className="flex flex-col items-center text-center px-6 pt-16 pb-12">
-        <Avatar size="lg" />
+      <div className="w-8/12 mx-auto">
+        {/* ── Hero ── */}
+        <section className="flex flex-col items-center text-center pt-16 pb-12">
+          <Avatar size="lg" />
 
-        <h1 className="text-[31px] font-bold mt-6 mb-3 leading-tight">
-          Глеб Галямов, продуктовый дизайнер
-        </h1>
+          <h1 className="text-[31px] font-bold mt-6 mb-3 leading-tight">
+            Глеб Галямов, продуктовый дизайнер
+          </h1>
 
-        <p className="text-[20px] font-normal text-[#888] mb-8 leading-relaxed">
-          Проектирую B2B и B2E продукты, CRM-системы и мобильные приложения
-          <br />
-          с учётом пользовательского опыта и бизнес-процессов
-        </p>
+          <p className="text-[20px] font-normal text-[#888] mb-8 leading-relaxed">
+            Проектирую B2B и B2E продукты, CRM-системы и мобильные приложения
+            <br />
+            с учётом пользовательского опыта и бизнес-процессов
+          </p>
 
-        <ContactButtons centered />
-      </section>
+          <ContactButtons centered />
+        </section>
 
-      {/* ── Cases ── */}
-      <section className="px-6 pb-24 space-y-4">
-        {cases.map((c) => (
-          <div key={c.id}>
-            <div className="bg-[#f0f0f0] rounded-2xl p-5 min-h-[200px] md:min-h-[320px]">
-              <span className="text-sm font-medium">{c.title}</span>
-            </div>
-
-            {c.shots > 0 && (
-              <div className="grid grid-cols-3 gap-4 mt-4">
-                {Array.from({ length: c.shots }).map((_, i) => (
-                  <div key={i} className="bg-[#f0f0f0] rounded-2xl aspect-[4/3] p-4">
-                    <span className="text-sm font-medium">Shot</span>
-                  </div>
-                ))}
+        {/* ── Cases ── */}
+        <section className="pb-24 space-y-4">
+          {cases.map((c) => (
+            <div key={c.id}>
+              <div className="bg-[#f0f0f0] rounded-2xl p-5 min-h-[200px] md:min-h-[320px]">
+                <span className="text-sm font-medium">{c.title}</span>
               </div>
-            )}
-          </div>
-        ))}
-      </section>
 
-      {/* ── Footer ── */}
-      <footer className="border-t border-gray-100 px-6 py-4">
-        <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-          <div className="flex items-center gap-3">
-            <Avatar size="sm" />
-            <span className="text-[20px] font-medium">Gleb Galyamov</span>
+              {c.shots > 0 && (
+                <div className="grid grid-cols-3 gap-4 mt-4">
+                  {Array.from({ length: c.shots }).map((_, i) => (
+                    <div key={i} className="bg-[#f0f0f0] rounded-2xl aspect-[4/3] p-4">
+                      <span className="text-sm font-medium">Shot</span>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          ))}
+        </section>
+
+        {/* ── Footer ── */}
+        <footer className="border-t border-gray-100 py-4">
+          <div className="px-5 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+            <div className="flex items-center gap-3">
+              <Avatar size="sm" />
+              <span className="text-[20px] font-medium">Gleb Galyamov</span>
+            </div>
+            <ContactButtons />
           </div>
-          <ContactButtons />
-        </div>
-      </footer>
+        </footer>
+      </div>
     </main>
   );
 }
