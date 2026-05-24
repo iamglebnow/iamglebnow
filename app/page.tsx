@@ -18,21 +18,23 @@ const cases = [
   },
 ];
 
+const gradientBtn =
+  "linear-gradient(0.205turn, rgba(84,169,235,1) 0%, rgba(110,187,247,1) 100%)";
+
 const ContactButtons: FC<{ centered?: boolean }> = ({ centered = false }) => (
-  <div
-    className={`flex flex-wrap gap-3 ${centered ? "justify-center" : ""}`}
-  >
+  <div className={`flex flex-wrap gap-3 ${centered ? "justify-center" : ""}`}>
     <a
       href={TELEGRAM_URL}
       target="_blank"
       rel="noopener noreferrer"
-      className="px-5 py-2.5 bg-sky-400 text-white rounded-full text-sm font-medium hover:opacity-90 transition-opacity"
+      className="px-5 py-2.5 text-white rounded-full text-[20px] font-medium hover:opacity-90 transition-opacity"
+      style={{ background: gradientBtn }}
     >
       Написать в телегу
     </a>
     <a
       href={`mailto:${EMAIL}`}
-      className="px-5 py-2.5 border border-gray-300 rounded-full text-sm font-medium hover:bg-gray-50 transition-colors"
+      className="px-5 py-2.5 border border-gray-300 rounded-full text-[20px] font-medium hover:bg-gray-50 transition-colors"
     >
       Написать на почту
     </a>
@@ -40,7 +42,7 @@ const ContactButtons: FC<{ centered?: boolean }> = ({ centered = false }) => (
       href={CV_URL}
       target="_blank"
       rel="noopener noreferrer"
-      className="px-5 py-2.5 border border-gray-300 rounded-full text-sm font-medium flex items-center gap-2 hover:bg-gray-50 transition-colors"
+      className="px-5 py-2.5 border border-gray-300 rounded-full text-[20px] font-medium flex items-center gap-2 hover:bg-gray-50 transition-colors"
     >
       <span aria-hidden>⬇</span> Скачать резюме
     </a>
@@ -65,11 +67,11 @@ export default function Home() {
       <section className="flex flex-col items-center text-center px-6 pt-16 pb-12">
         <Avatar size="lg" />
 
-        <h1 className="text-2xl md:text-3xl font-bold mt-6 mb-3">
+        <h1 className="text-[31px] font-bold mt-6 mb-3 leading-tight">
           Глеб Галямов, продуктовый дизайнер
         </h1>
 
-        <p className="text-[#888] max-w-md mb-8 leading-relaxed">
+        <p className="text-[20px] font-normal text-[#888] max-w-md mb-8 leading-relaxed">
           Проектирую B2B и B2E продукты, CRM-системы и мобильные приложения
           с&nbsp;учётом пользовательского опыта и бизнес-процессов
         </p>
@@ -106,7 +108,7 @@ export default function Home() {
         <div className="max-w-5xl mx-auto flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <div className="flex items-center gap-3">
             <Avatar size="sm" />
-            <span className="text-sm font-medium">Gleb Galyamov</span>
+            <span className="text-[20px] font-medium">Gleb Galyamov</span>
           </div>
           <ContactButtons />
         </div>

@@ -1,17 +1,17 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Manrope } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({
+const manrope = Manrope({
   subsets: ["latin", "cyrillic"],
-  variable: "--font-inter",
+  variable: "--font-manrope",
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Gleb Galyamov — Product Designer",
+  title: "Глеб Галямов — Продуктовый дизайнер",
   description:
-    "Product designer specialising in B2B and B2E products, CRM systems, and mobile applications.",
+    "Продуктовый дизайнер. Проектирую B2B и B2E продукты, CRM-системы и мобильные приложения.",
 };
 
 export default function RootLayout({
@@ -20,7 +20,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={inter.variable}>
+    <html lang="ru" className={manrope.variable}>
       <body className="font-sans antialiased">{children}</body>
     </html>
   );
