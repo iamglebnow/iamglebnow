@@ -27,14 +27,14 @@ const ContactButtons: FC<{ centered?: boolean }> = ({ centered = false }) => (
       href={TELEGRAM_URL}
       target="_blank"
       rel="noopener noreferrer"
-      className="px-5 py-2.5 text-white rounded-full text-[20px] font-medium hover:opacity-90 transition-opacity"
+      className="h-[44px] px-5 flex items-center text-white rounded-full text-[20px] font-medium hover:opacity-90 transition-opacity"
       style={{ background: gradientBtn }}
     >
       Написать в телегу
     </a>
     <a
       href={`mailto:${EMAIL}`}
-      className="px-5 py-2.5 border border-gray-300 rounded-full text-[20px] font-medium hover:bg-gray-50 transition-colors"
+      className="h-[44px] px-5 flex items-center border border-gray-300 rounded-full text-[20px] font-medium hover:bg-gray-50 transition-colors"
     >
       Написать на почту
     </a>
@@ -42,7 +42,7 @@ const ContactButtons: FC<{ centered?: boolean }> = ({ centered = false }) => (
       href={CV_URL}
       target="_blank"
       rel="noopener noreferrer"
-      className="px-5 py-2.5 border border-gray-300 rounded-full text-[20px] font-medium flex items-center gap-2 hover:bg-gray-50 transition-colors"
+      className="h-[44px] px-5 flex items-center gap-2 border border-gray-300 rounded-full text-[20px] font-medium hover:bg-gray-50 transition-colors"
     >
       <span aria-hidden>⬇</span> Скачать резюме
     </a>
@@ -71,9 +71,10 @@ export default function Home() {
           Глеб Галямов, продуктовый дизайнер
         </h1>
 
-        <p className="text-[20px] font-normal text-[#888] max-w-md mb-8 leading-relaxed">
+        <p className="text-[20px] font-normal text-[#888] mb-8 leading-relaxed">
           Проектирую B2B и B2E продукты, CRM-системы и мобильные приложения
-          с&nbsp;учётом пользовательского опыта и бизнес-процессов
+          <br />
+          с учётом пользовательского опыта и бизнес-процессов
         </p>
 
         <ContactButtons centered />
