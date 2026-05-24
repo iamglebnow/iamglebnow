@@ -7,112 +7,108 @@ const CV_URL =
 
 const cases = [
   {
-    index: "01",
+    id: "01",
     title: "Кейс 1",
-    description: "B2B · CRM",
+    shots: 3,
   },
   {
-    index: "02",
+    id: "02",
     title: "Кейс 2",
-    description: "Mobile · B2E",
+    shots: 0,
   },
 ];
 
-const ContactLinks: FC<{ className?: string }> = ({ className = "" }) => (
-  <div className={`flex flex-wrap gap-x-6 gap-y-3 ${className}`}>
+const ContactButtons: FC<{ centered?: boolean }> = ({ centered = false }) => (
+  <div
+    className={`flex flex-wrap gap-3 ${centered ? "justify-center" : ""}`}
+  >
     <a
       href={TELEGRAM_URL}
       target="_blank"
       rel="noopener noreferrer"
-      className="text-sm tracking-wide uppercase border-b border-black pb-0.5 hover:opacity-40 transition-opacity duration-200"
+      className="px-5 py-2.5 bg-sky-400 text-white rounded-full text-sm font-medium hover:opacity-90 transition-opacity"
     >
-      Telegram
+      Написать в телегу
     </a>
     <a
       href={`mailto:${EMAIL}`}
-      className="text-sm tracking-wide uppercase border-b border-black pb-0.5 hover:opacity-40 transition-opacity duration-200"
+      className="px-5 py-2.5 border border-gray-300 rounded-full text-sm font-medium hover:bg-gray-50 transition-colors"
     >
-      Email
+      Написать на почту
     </a>
     <a
       href={CV_URL}
       target="_blank"
       rel="noopener noreferrer"
-      className="text-sm tracking-wide uppercase border-b border-black pb-0.5 hover:opacity-40 transition-opacity duration-200"
+      className="px-5 py-2.5 border border-gray-300 rounded-full text-sm font-medium flex items-center gap-2 hover:bg-gray-50 transition-colors"
     >
-      Download CV
+      <span aria-hidden>⬇</span> Скачать резюме
     </a>
   </div>
 );
 
+const Avatar: FC<{ size: "lg" | "sm" }> = ({ size }) => {
+  const dim = size === "lg" ? "w-24 h-24" : "w-9 h-9";
+  return (
+    <div
+      className={`${dim} rounded-full bg-gray-200 flex-shrink-0 overflow-hidden`}
+    >
+      {/* Place <Image src="/avatar.jpg" alt="Gleb Galyamov" fill className="object-cover" /> here */}
+    </div>
+  );
+};
+
 export default function Home() {
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen bg-white">
       {/* ── Hero ── */}
-      <section className="px-6 pt-20 pb-28 md:px-16 md:pt-28 md:pb-36 lg:px-24">
-        <div className="max-w-5xl">
-          {/* eyebrow */}
-          <p className="text-xs tracking-[0.2em] uppercase text-[#888] mb-10 md:mb-14">
-            Product Designer
-          </p>
+      <section className="flex flex-col items-center text-center px-6 pt-16 pb-12">
+        <Avatar size="lg" />
 
-          {/* name */}
-          <h1 className="text-[clamp(3rem,10vw,8rem)] font-bold leading-[0.95] tracking-tight text-black mb-8 md:mb-10">
-            Gleb
-            <br />
-            Galyamov
-          </h1>
+        <h1 className="text-2xl md:text-3xl font-bold mt-6 mb-3">
+          Глеб Галямов, продуктовый дизайнер
+        </h1>
 
-          {/* tagline */}
-          <p className="text-base md:text-lg text-[#888] max-w-sm leading-relaxed mb-14 md:mb-20">
-            Specialising in B2B &amp; B2E products, CRM systems, and mobile
-            applications — with a focus on UX and business processes.
-          </p>
+        <p className="text-[#888] max-w-md mb-8 leading-relaxed">
+          Проектирую B2B и B2E продукты, CRM-системы и мобильные приложения
+          с&nbsp;учётом пользовательского опыта и бизнес-процессов
+        </p>
 
-          <ContactLinks />
-        </div>
+        <ContactButtons centered />
       </section>
 
       {/* ── Cases ── */}
-      <section className="px-6 md:px-16 lg:px-24 pb-28 md:pb-36">
-        <div className="flex items-baseline gap-4 mb-14 md:mb-20 border-t border-black pt-8">
-          <span className="text-xs tracking-[0.2em] uppercase text-[#888]">
-            Selected Work
-          </span>
-        </div>
+      <section className="px-4 md:px-8 pb-24 max-w-5xl mx-auto space-y-4">
+        {cases.map((c) => (
+          <div key={c.id}>
+            <div className="bg-[#f0f0f0] rounded-2xl p-5 min-h-[200px] md:min-h-[320px]">
+              <span className="text-sm font-medium">{c.title}</span>
+            </div>
 
-        <div className="space-y-24 md:space-y-32">
-          {cases.map((c) => (
-            <article key={c.index} className="group">
-              {/* meta row */}
-              <div className="flex items-baseline justify-between mb-6">
-                <span className="text-xs text-[#888] tracking-widest">
-                  {c.index}
-                </span>
-                <span className="text-xs text-[#888] tracking-wide uppercase">
-                  {c.description}
-                </span>
+            {c.shots > 0 && (
+              <div className="grid grid-cols-3 gap-4 mt-4">
+                {Array.from({ length: c.shots }).map((_, i) => (
+                  <div
+                    key={i}
+                    className="bg-[#f0f0f0] rounded-2xl aspect-[4/3] p-4"
+                  >
+                    <span className="text-sm font-medium">Shot</span>
+                  </div>
+                ))}
               </div>
-
-              {/* screenshot placeholder */}
-              <div className="w-full aspect-[16/9] bg-gray-200 mb-8 group-hover:opacity-80 transition-opacity duration-200" />
-
-              {/* title */}
-              <h2 className="text-3xl md:text-5xl font-bold tracking-tight">
-                {c.title}
-              </h2>
-            </article>
-          ))}
-        </div>
+            )}
+          </div>
+        ))}
       </section>
 
       {/* ── Footer ── */}
-      <footer className="px-6 md:px-16 lg:px-24 py-12 border-t border-black">
-        <div className="flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
-          <span className="text-sm font-bold tracking-tight">
-            Gleb Galyamov
-          </span>
-          <ContactLinks />
+      <footer className="border-t border-gray-100 px-6 py-4">
+        <div className="max-w-5xl mx-auto flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+          <div className="flex items-center gap-3">
+            <Avatar size="sm" />
+            <span className="text-sm font-medium">Gleb Galyamov</span>
+          </div>
+          <ContactButtons />
         </div>
       </footer>
     </main>
