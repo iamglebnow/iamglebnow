@@ -84,15 +84,15 @@ export default function Home() {
       <section className="px-6 pb-24 space-y-4">
         {cases.map((c) => (
           <div key={c.id}>
-            <span className="text-sm font-medium block mb-2">{c.title}</span>
-            <div className="bg-[#f0f0f0] rounded-2xl min-h-[200px] md:min-h-[320px]" />
+            <div className="bg-[#f0f0f0] rounded-2xl p-5 min-h-[200px] md:min-h-[320px]">
+              <span className="text-sm font-medium">{c.title}</span>
+            </div>
 
             {c.shots > 0 && (
               <div className="grid grid-cols-3 gap-4 mt-4">
                 {Array.from({ length: c.shots }).map((_, i) => (
-                  <div key={i}>
-                    <span className="text-sm font-medium block mb-2">Shot</span>
-                    <div className="bg-[#f0f0f0] rounded-2xl aspect-[4/3]" />
+                  <div key={i} className="bg-[#f0f0f0] rounded-2xl aspect-[4/3] p-4">
+                    <span className="text-sm font-medium">Shot</span>
                   </div>
                 ))}
               </div>
