@@ -47,7 +47,7 @@ const ContactButtons: FC<{ centered?: boolean }> = ({ centered = false }) => (
 );
 
 const Avatar: FC<{ size: "lg" | "sm" }> = ({ size }) => {
-  const dim = size === "lg" ? "w-24 h-24" : "w-9 h-9";
+  const dim = size === "lg" ? "w-24 h-24" : "w-[44px] h-[44px]";
   return (
     <div
       className={`${dim} rounded-full bg-gray-200 flex-shrink-0 overflow-hidden`}
