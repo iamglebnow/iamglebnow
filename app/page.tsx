@@ -1,4 +1,6 @@
-import type { FC } from "react";
+"use client";
+
+import { type FC, useEffect, useRef, useState } from "react";
 
 const TELEGRAM_URL = "https://t.me/postmortemx";
 const EMAIL = "bequadx@mail.ru";
@@ -6,16 +8,11 @@ const CV_URL =
   "https://drive.google.com/file/d/1zV_W9MEzkIs_Ei9-J4DfR6w3dRiMvzbZ/view?usp=sharing";
 
 const cases = [
-  {
-    id: "01",
-    title: "Кейс 1",
-    shots: 3,
-  },
-  {
-    id: "02",
-    title: "Кейс 2",
-    shots: 0,
-  },
+  { id: "01", shots: 3 },
+  { id: "02", shots: 0 },
+  { id: "03", shots: 2 },
+  { id: "04", shots: 0 },
+  { id: "05", shots: 3 },
 ];
 
 const gradientBtn =
@@ -61,11 +58,26 @@ const Avatar: FC<{ size: "lg" | "sm" }> = ({ size }) => {
 };
 
 export default function Home() {
+  const heroRef = useRef<HTMLElement>(null);
+  const [footerVisible, setFooterVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => setFooterVisible(!entry.isIntersecting),
+      { threshold: 0 }
+    );
+    if (heroRef.current) observer.observe(heroRef.current);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <main className="min-h-screen bg-white">
       <div className="max-w-[1160px] w-full mx-auto">
         {/* ── Hero ── */}
-        <section className="flex flex-col items-center text-center pt-16 pb-12">
+        <section
+          ref={heroRef}
+          className="flex flex-col items-center text-center pt-16 pb-12"
+        >
           <Avatar size="lg" />
 
           <h1 className="text-[31px] font-bold mt-6 mb-3 leading-tight">
@@ -82,18 +94,21 @@ export default function Home() {
         </section>
 
         {/* ── Cases ── */}
-        <section className="pb-24 space-y-4">
+        <section className="pb-36 space-y-4">
           {cases.map((c) => (
             <div key={c.id}>
               <div className="bg-[#f0f0f0] rounded-2xl p-5 min-h-[200px] md:min-h-[320px]">
-                <span className="text-sm font-medium">{c.title}</span>
+                <span className="text-sm font-medium">Heading</span>
               </div>
 
               {c.shots > 0 && (
                 <div className="grid grid-cols-3 gap-4 mt-4">
                   {Array.from({ length: c.shots }).map((_, i) => (
-                    <div key={i} className="bg-[#f0f0f0] rounded-2xl aspect-[4/3] p-4">
-                      <span className="text-sm font-medium">Shot</span>
+                    <div
+                      key={i}
+                      className="bg-[#f0f0f0] rounded-2xl aspect-[4/3] p-4"
+                    >
+                      <span className="text-sm font-medium">Heading</span>
                     </div>
                   ))}
                 </div>
@@ -101,18 +116,22 @@ export default function Home() {
             </div>
           ))}
         </section>
-
-        {/* ── Footer ── */}
-        <footer className="border-t border-gray-100 py-4">
-          <div className="px-5 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-            <div className="flex items-center gap-3">
-              <Avatar size="sm" />
-              <span className="text-[20px] font-medium">Gleb Galyamov</span>
-            </div>
-            <ContactButtons />
-          </div>
-        </footer>
       </div>
+
+      {/* ── Footer ── full-width, slides up when hero leaves viewport */}
+      <footer
+        className={`fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 py-4 transition-transform duration-500 ease-out ${
+          footerVisible ? "translate-y-0" : "translate-y-full"
+        }`}
+      >
+        <div className="max-w-[1160px] mx-auto px-5 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+          <div className="flex items-center gap-3">
+            <Avatar size="sm" />
+            <span className="text-[20px] font-medium">Gleb Galyamov</span>
+          </div>
+          <ContactButtons />
+        </div>
+      </footer>
     </main>
   );
 }
