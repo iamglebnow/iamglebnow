@@ -15,23 +15,19 @@ const cases = [
   { id: "05", shots: 3 },
 ];
 
-const gradientBtn =
-  "linear-gradient(0.205turn, rgba(84,169,235,1) 0%, rgba(110,187,247,1) 100%)";
-
 const ContactButtons: FC<{ centered?: boolean }> = ({ centered = false }) => (
   <div className={`flex flex-wrap gap-3 ${centered ? "justify-center" : ""}`}>
     <a
       href={TELEGRAM_URL}
       target="_blank"
       rel="noopener noreferrer"
-      className="h-[44px] px-5 flex items-center text-white rounded-full text-[20px] font-medium hover:opacity-90 transition-opacity"
-      style={{ background: gradientBtn }}
+      className="h-btn px-5 flex items-center text-white rounded-full text-ui font-medium bg-btn-primary hover:opacity-90 transition-opacity"
     >
       Написать в телегу
     </a>
     <a
       href={`mailto:${EMAIL}`}
-      className="h-[44px] px-5 flex items-center border border-gray-300 rounded-full text-[20px] font-medium hover:bg-gray-50 transition-colors"
+      className="h-btn px-5 flex items-center border border-gray-300 rounded-full text-ui font-medium hover:bg-gray-50 transition-colors"
     >
       Написать на почту
     </a>
@@ -39,7 +35,7 @@ const ContactButtons: FC<{ centered?: boolean }> = ({ centered = false }) => (
       href={CV_URL}
       target="_blank"
       rel="noopener noreferrer"
-      className="h-[44px] px-5 flex items-center gap-2 border border-gray-300 rounded-full text-[20px] font-medium hover:bg-gray-50 transition-colors"
+      className="h-btn px-5 flex items-center gap-2 border border-gray-300 rounded-full text-ui font-medium hover:bg-gray-50 transition-colors"
     >
       <span aria-hidden>⬇</span> Скачать резюме
     </a>
@@ -80,11 +76,11 @@ export default function Home() {
         >
           <Avatar size="lg" />
 
-          <h1 className="text-[31px] font-bold mt-6 mb-3 leading-tight">
+          <h1 className="text-h1 mt-6 mb-3">
             Глеб Галямов, продуктовый дизайнер
           </h1>
 
-          <p className="text-[20px] font-normal text-[#888] mb-8 leading-relaxed">
+          <p className="text-ui font-normal text-muted mb-8 leading-relaxed">
             Проектирую B2B и B2E продукты, CRM-системы и мобильные приложения
             <br />
             с учётом пользовательского опыта и бизнес-процессов
@@ -97,7 +93,7 @@ export default function Home() {
         <section className="pb-36 space-y-4">
           {cases.map((c) => (
             <div key={c.id}>
-              <div className="bg-[#f0f0f0] rounded-2xl p-5 min-h-[200px] md:min-h-[320px]">
+              <div className="bg-card rounded-2xl p-5 min-h-[200px] md:min-h-[320px]">
                 <span className="text-sm font-medium">Heading</span>
               </div>
 
@@ -106,7 +102,7 @@ export default function Home() {
                   {Array.from({ length: c.shots }).map((_, i) => (
                     <div
                       key={i}
-                      className="bg-[#f0f0f0] rounded-2xl aspect-[4/3] p-4"
+                      className="bg-card rounded-2xl aspect-[4/3] p-4"
                     >
                       <span className="text-sm font-medium">Heading</span>
                     </div>
@@ -127,7 +123,7 @@ export default function Home() {
         <div className="max-w-[1160px] mx-auto px-5 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <div className="flex items-center gap-3">
             <Avatar size="sm" />
-            <span className="text-[20px] font-medium">Gleb Galyamov</span>
+            <span className="text-ui font-medium">Gleb Galyamov</span>
           </div>
           <ContactButtons />
         </div>
