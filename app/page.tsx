@@ -1,9 +1,10 @@
 "use client";
 
+import Image from "next/image";
 import { type FC, useEffect, useRef, useState } from "react";
 
-const TELEGRAM_URL = "https://t.me/postmortemx";
-const EMAIL = "bequadx@mail.ru";
+const TELEGRAM_URL = "https://t.me/iamglebnow";
+const EMAIL = "iamglebnow@internet.ru";
 const CV_URL =
   "https://drive.google.com/file/d/1zV_W9MEzkIs_Ei9-J4DfR6w3dRiMvzbZ/view?usp=sharing";
 
@@ -46,9 +47,9 @@ const Avatar: FC<{ size: "lg" | "sm" }> = ({ size }) => {
   const dim = size === "lg" ? "w-24 h-24" : "w-[44px] h-[44px]";
   return (
     <div
-      className={`${dim} rounded-full bg-gray-200 flex-shrink-0 overflow-hidden`}
+      className={`${dim} rounded-full bg-gray-200 flex-shrink-0 overflow-hidden relative`}
     >
-      {/* Place <Image src="/avatar.jpg" alt="Gleb Galyamov" fill className="object-cover" /> here */}
+      <Image src="/avatar.jpg" alt="Gleb Galyamov" fill className="object-cover" />
     </div>
   );
 };
